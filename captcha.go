@@ -54,3 +54,10 @@ func (c *Captcha) Verify(id, answer string, clear bool) (match bool) {
 	vv = strings.TrimSpace(vv)
 	return vv == strings.TrimSpace(answer)
 }
+
+//VerifyAndGet veriry and return origin string
+func (c *Captcha) VerifyAndGet(id, answer string, clear bool) (origin string, match bool) {
+	origin = c.Store.Get(id, clear)
+	match = origin == answer
+	return
+}
